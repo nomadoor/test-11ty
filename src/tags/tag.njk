@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag | slugify }}/index.html"
+---
+
+# Tag: {{ tag }}
+
+
+{% for p in collections.posts %}
+  {% if p.data.tags and (tag in p.data.tags) %}
+    {% set url = p.url %}
+    {% set title = p.data.title %}
+    {% set desc = p.data.description %}
+    {% set tags = p.data.tags %}
+    {% set date = p.date %}
+    {% set lang = p.data.lang %}
+    {% include "partials/card.njk" %}
+  {% endif %}
+{% endfor %}
+

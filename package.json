@@ -1,0 +1,16 @@
+{
+  "name": "eleventy-sample",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy",
+    "search:index": "npx pagefind --site _site --output-subdir _pagefind"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  },
+  "devDependencies": {
+    "pagefind": "^1.4.0"
+  }
+}

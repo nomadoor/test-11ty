@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="{{ lang or 'ja' }}">
+<head>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or site.name or "Site" }}</title>
+  {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+  {% if page and page.url %}
+    <link rel="canonical" href="{{ page.url }}">
+  {% endif %}
+</head>
+
+<script>
+(async () => {
+  try {
+    await import('/_pagefind/pagefind.js');      // ビルド後に存在
+    if (window.PagefindUI) {
+      new window.PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        showImages: false,
+        translations: { placeholder: "サイト内検索" }
+      });
+    }
+  } catch (e) {
+    // 開発中や未生成時はここに来ます（無視でOK）
+  }
+})();
+</script>
+
+
+<body>
+  <header>
+    <nav>
+      <!-- 必要なら後でリンクを増やします -->
+      <a href="/">Home</a>
+      <a href="/ja/">日本語</a>
+      <a href="/en/">English</a>
+    </nav>
+
+    <form id="search" role="search" class="search">
+      <input id="search-input" type="search" placeholder="Search…" aria-label="Search">
+      <div id="search-results"></div>
+  </form>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  {% block afterContent %}{% endblock %}
+  
+  {#}
+  {% if alt_url %}
+    <p><a href="{{ alt_url }}">English version</a></p>
+  {% endif %}
+  **/
+  #}
+
+  <footer>
+    <small>© {{ "" | year }}</small>
+  </footer>
+</body>
+</html>

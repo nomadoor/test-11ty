@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+title: 日本語トップ
+description: 日本語のホーム
+lang: ja
+---
+
+<h1>日本語の投稿</h1>
+{% for p in collections.posts %}
+  {% if p.data.lang == "ja" %}
+    {% set url = p.url %}
+    {% set title = p.data.title %}
+    {% set desc = p.data.description %}
+    {% set tags = p.data.tags %}
+    {% set date = p.date %}
+    {% set lang = p.data.lang %}
+    {% include "partials/card.njk" %}
+  {% endif %}
+{% endfor %}
+

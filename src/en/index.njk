@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+title: English Home
+description: English home
+lang: en
+---
+
+<h1>English Posts</h1>
+{% for p in collections.posts %}
+  {% if p.data.lang == "en" %}
+    {% set url = p.url %}
+    {% set title = p.data.title %}
+    {% set desc = p.data.description %}
+    {% set tags = p.data.tags %}
+    {% set date = p.date %}
+    {% set lang = p.data.lang %}
+    {% include "partials/card.njk" %}
+  {% endif %}
+{% endfor %}
+
+<ul>
+{% for p in collections.posts %}
+  {% if p.data.lang == "en" %}
+    <li>
+      <a href="{{ p.url }}">{{ p.data.title }}</a>
+      <small>— {{ p.date | date('YYYY-MM-DD') }}</small>
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>

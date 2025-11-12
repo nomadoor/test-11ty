@@ -1,0 +1,20 @@
+{# 期待する変数:
+   url, title, desc (任意), tags (配列 任意), date (Date), lang (任意 "ja"/"en")
+#}
+<article class="card">
+  <h3 class="card-title"><a href="{{ url }}">{{ title }}</a></h3>
+  {% if desc %}<p class="card-desc">{{ desc }}</p>{% endif %}
+
+  <p class="card-meta">
+    <time datetime="{{ date | date('YYYY-MM-DD') }}">{{ date | date('YYYY-MM-DD') }}</time>
+    {% if lang %} · {{ lang | upper }}{% endif %}
+  </p>
+
+  {% if tags and tags.length %}
+    <ul class="card-tags">
+      {% for t in tags %}
+        <li><a href="/tags/{{ t | slugify }}/">{{ t }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</article>

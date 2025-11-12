@@ -1,0 +1,9 @@
+{% extends "layouts/base.njk" %}
+
+{% block afterContent %}
+  {% if alt_url %}
+    <p class="alt-lang">
+      <a href="{{ alt_url }}">Switch language</a>
+    </p>
+  {% endif %}
+{% endblock %}
